@@ -22,3 +22,23 @@ duckdb
 | `sales_sjis.csv` | Shift_JIS で保存した CSV |
 
 本編で打った SQL は `queries.sql` に画面に出した順で並べてあります。
+
+## no02: Excel とブラウザ画面編
+
+YouTube「DuckDB 入門 #2」で使った材料です。`gen_sample.py` で作ったデータに、次の2つを足して使います。
+
+| ファイル | 中身 |
+|---|---|
+| `budget.xlsx` | 営業部から届いた体の架空の予算（シート「予算」1枚。1行目に表題・2行目は空・3行目に見出し・4〜15行目に月×カテゴリの12行） |
+| `gen_budget.py` | `budget.xlsx` を作るスクリプト（同じ中身の物が作れます） |
+
+`gen_budget.py` を回す時だけ `pip install openpyxl` が要ります。`budget.xlsx` をそのまま使うだけなら要りません。`gen_sample.py` は引き続き標準ライブラリだけで動きます。
+
+xlsx の書き出しと読み込みには DuckDB の excel 拡張を使います。最初に一度だけ次の2文を打ちます。
+
+```sql
+INSTALL excel;
+LOAD excel;
+```
+
+本編で打った SQL は `queries_no02.sql` に画面に出した順で並べてあります（各文の頭に何をする文かの1行コメントつき）。`gen_sample.py` でデータを作ったフォルダに `budget.xlsx` を置き、そこで `duckdb` を起動して1つずつ貼って試せます。
